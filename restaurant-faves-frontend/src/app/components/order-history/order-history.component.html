@@ -1,0 +1,33 @@
+<h1>Restaurant Faves!</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>Restaurant</th>
+      <th>Rating</th>
+      <th>Order again?</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+      @for (o of allOrders; track o.id) {
+      <tr>
+      <td>{{ o.description }}</td>
+      <td>{{ o.restaurant }}</td>
+      <td>{{ o.rating }}</td>
+      @if (o.orderAgain == true){
+      <td>✅</td>
+      } @else {
+      <td></td>
+      }
+      <td>
+        <button (click)="callApiDeleteOrder(o)">x</button>
+      </td>
+      </tr>
+      }
+    
+  </tbody>
+</table>
+
+<app-add-order-form (Created)="callApiAddOrder($event)"></app-add-order-form>
